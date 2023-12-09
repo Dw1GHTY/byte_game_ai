@@ -7,7 +7,6 @@ def inicijalizacija_matrice(n):
         mat.append(row)
 
     return mat
-
 def inicijalizacija_stanja(mat, n):
     for i in range(n):
         for j in range(n):

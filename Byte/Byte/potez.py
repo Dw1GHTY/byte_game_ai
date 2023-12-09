@@ -3,13 +3,14 @@ from Inicijalizacija import *
 from Interfejs import *
 from Pomocne_funkcije import *
 
-def igraj_potez(mat, poz_x, poz_y, pravac):
+def igraj_potez(mat, poz_x, poz_y, pravac, poz_u_steku):
 
     poz_x = prevedi_slovo_u_broj(poz_x)
     poz_y -= 1
-    figura = mat[poz_x][poz_y][0]
-    mat[poz_x][poz_y].pop()             #OVDE POSTAVITI LOGIKU ZA POMERANJE VISE OD JEDNE FIGURE
-                                        #trenutno samo sa vrha uzima
+
+    podniz = mat[poz_x][poz_y][poz_u_steku - 1:]    #figure koje se pomeraju
+    mat[poz_x][poz_y][poz_u_steku - 1:] = []        #brisanje ostatka
+
     if pravac == 'GD':
         poz_x -= 1
         poz_y += 1
@@ -22,5 +23,6 @@ def igraj_potez(mat, poz_x, poz_y, pravac):
     elif pravac == 'DD':
         poz_x += 1
         poz_y += 1
-    mat[poz_x][poz_y].append(figura)
 
+    for figura in podniz:
+        mat[poz_x][poz_y].append(figura)

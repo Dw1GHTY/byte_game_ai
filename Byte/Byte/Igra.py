@@ -37,25 +37,27 @@ def start_game():
         except ValueError:
             print("Nevažeći unos. Molimo unesite broj.")
 
-    #tabla na kojoj se igra
+    #tabla
     tabla = inicijalizacija_matrice(n)
     inicijalizacija_stanja(tabla, n)
     stampaj_tabelu(tabla)
 
-    igrac_x = 0 #Pamti se broj stekova osvojenih
-    igrac_o = 0
+    # Ponei
+    igrac_X = 0
+    igrac_O = 0
     igrac_koji_igra = starting_player   #igrac koji igra je prvo onaj sto prvi igra...sokiran
     while True:
         poz_x = input("Unesi slovo reda: ").lower()
         poz_y = int(input("Unesi broj kolone: "))
+        poz_u_steku = int(input("Unesi poziciju figure na steku: "))
         pravac = input("Unesi pravac kretanja: ")
 
 
-
-        if validan_potez(tabla, prevedi_slovo_u_broj(poz_x), poz_y, pravac):
+        if validan_potez(tabla, prevedi_slovo_u_broj(poz_x), poz_y - 1, pravac, poz_u_steku,"X"):
             # moram da prenesem figuru, X / O u igraj potez
-            igraj_potez(tabla, poz_x, poz_y, pravac)
+            igraj_potez(tabla, poz_x, poz_y, pravac, poz_u_steku)
             print("Potez odigran!!")
             stampaj_tabelu(tabla)
         else:
+            print("izasao sam iz if u IGRA")
             break

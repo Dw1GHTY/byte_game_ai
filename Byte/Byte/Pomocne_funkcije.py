@@ -1,4 +1,3 @@
-
 def prevedi_slovo_u_broj(slovo):
     if 'a' <= slovo <= 'h':
         broj = ord(slovo) - ord('a')
