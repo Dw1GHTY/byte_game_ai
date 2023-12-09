@@ -2,11 +2,9 @@ from Validnost import *
 from Inicijalizacija import *
 from Interfejs import *
 from Pomocne_funkcije import *
+from potez import *
 
-def igraj_potez(mat, poz_x, poz_y, pravac):
-    poz_x = prevedi_slovo_u_broj(poz_x)
-    poz_y -= 1
-    return validan_potez(mat, poz_x, poz_y, pravac)
+
 
 def kraj_igre(igrac_x, igrac_y):
     if igrac_x == 2 or igrac_y == 2:
@@ -39,18 +37,25 @@ def start_game():
         except ValueError:
             print("Nevažeći unos. Molimo unesite broj.")
 
+    #tabla na kojoj se igra
     tabla = inicijalizacija_matrice(n)
     inicijalizacija_stanja(tabla, n)
+    stampaj_tabelu(tabla)
 
-    irgac_x = 0 #Pamti se broj stekova osvojenih
+    igrac_x = 0 #Pamti se broj stekova osvojenih
     igrac_o = 0
+    igrac_koji_igra = starting_player   #igrac koji igra je prvo onaj sto prvi igra...sokiran
     while True:
         poz_x = input("Unesi slovo reda: ").lower()
         poz_y = int(input("Unesi broj kolone: "))
         pravac = input("Unesi pravac kretanja: ")
 
-        if igraj_potez(tabla, poz_x, poz_y, pravac) == False:
-            break
-        else:
+
+
+        if validan_potez(tabla, prevedi_slovo_u_broj(poz_x), poz_y, pravac):
+            # moram da prenesem figuru, X / O u igraj potez
+            igraj_potez(tabla, poz_x, poz_y, pravac)
             print("Potez odigran!!")
-    stampaj_tabelu(tabla)
+            stampaj_tabelu(tabla)
+        else:
+            break

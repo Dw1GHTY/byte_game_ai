@@ -3,7 +3,7 @@ def validna_pozicija(row, col, n):
     return 0 <= row < n and 0 <= col < n
 
 def prazna_pozicija(mat, row, col):
-    return True if len(mat[row][col]) == 0 else False
+    return True if len(mat[row][col - 1]) == 0 else False
 
 
 def validan_potez(mat, poz_x, poz_y, pravac):
