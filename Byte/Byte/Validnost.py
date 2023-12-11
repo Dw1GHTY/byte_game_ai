@@ -36,6 +36,9 @@ def validan_potez(mat, poz_x, poz_y, pravac, poz_steka, igrac):
         return False
 
     # Sva susedna polja su prazna i sad treba da se proveri gde se nalazi najblizi stek
+    if poz_steka != 1:
+        return False
+
     niz_validnih_smerova = najbliza_polja(mat, poz_x, poz_y)
     for smer in niz_validnih_smerova:
         if (dest_stack[0] - poz_x, dest_stack[1] - poz_y) == smer:
@@ -66,7 +69,7 @@ def najbliza_polja(mat, startni_red, startna_kolona):
         trenutni_red, trenutna_kolona, broj_skokova, poc_smer = red.pop(0)
         poseteni.add((trenutni_red, trenutna_kolona))
 
-        if len(mat[trenutni_red][trenutna_kolona]) != 0:
+        if len(mat[trenutni_red][trenutna_kolona]) != 0 and poc_smer != (0, 0):
             if broj_skokova < min_broj_skokova:
                 najbliza = [poc_smer]
                 min_broj_skokova = broj_skokova
