@@ -6,7 +6,7 @@ from Pomocne_funkcije import *
 def igraj_potez(mat, poz_x, poz_y, pravac, poz_u_steku):
 
     podniz = mat[poz_x][poz_y][poz_u_steku - 1:]    #figure koje se pomeraju
-    mat[poz_x][poz_y][poz_u_steku - 1:] = []
+    mat[poz_x][poz_y][poz_u_steku - 1:] = []        #brisanje ostatka
 
     if pravac == 'GD':
         poz_x -= 1
@@ -35,3 +35,5 @@ def proveri_moguci_potez(mat, igrac):
                             if validan_potez(mat, i , j, smer, k + 1, igrac):
                                 return True
     return False
+
+
